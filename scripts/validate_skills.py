@@ -1,32 +1,33 @@
 #!/usr/bin/env python3
-"""Validate every skills/*/SKILL.md against the Agent Skills spec (agentskills.io)."""
+"""Validate every skill in skills/ and third-party/ against the Agent Skills spec (agentskills.io)."""
 import re
 import sys
 from pathlib import Path
 
 import yaml
 
-ROOT = Path(__file__).resolve().parent.parent / "skills"
+from skilllib import THIRD_PARTY, UPSTREAM_FILE, read_frontmatter, skill_dirs
+
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 ALLOWED = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
 
 
 def check(skill_dir: Path) -> list[str]:
-    errs = []
+    """Return messages; ones starting with 'warning' do not fail the build."""
+    third_party = skill_dir.parent == THIRD_PARTY
     md = skill_dir / "SKILL.md"
     if not md.is_file():
         return ["missing SKILL.md"]
-    text = md.read_text(encoding="utf-8")
-    m = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n?", text, re.S)
-    if not m:
-        return ["SKILL.md must start with YAML frontmatter between '---' lines"]
     try:
-        fm = yaml.safe_load(m.group(1)) or {}
+        fm, _ = read_frontmatter(md)
     except yaml.YAMLError as e:
         return [f"invalid YAML: {e}"]
+    if fm is None:
+        return ["SKILL.md must start with YAML frontmatter between '---' lines"]
     if not isinstance(fm, dict):
         return ["frontmatter must be a mapping"]
 
+    errs = []
     name = fm.get("name")
     if not isinstance(name, str) or not name:
         errs.append("'name' is required")
@@ -55,21 +56,27 @@ def check(skill_dir: Path) -> list[str]:
 
     unknown = set(fm) - ALLOWED
     if unknown:
-        errs.append(f"unknown frontmatter field(s): {', '.join(sorted(unknown))}")
+        msg = f"unknown frontmatter field(s): {', '.join(sorted(unknown))}"
+        errs.append(("warning: " + msg) if third_party else msg)
 
-    if len(text.splitlines()) > 500:
+    if third_party:
+        if not (skill_dir / UPSTREAM_FILE).is_file():
+            errs.append(f"third-party skill needs {UPSTREAM_FILE} (use scripts/vendor.py)")
+        if not any(p.name.upper().startswith(("LICENSE", "LICENCE", "COPYING")) for p in skill_dir.iterdir()):
+            errs.append("third-party skill must keep its original LICENSE file")
+
+    if len(md.read_text(encoding="utf-8").splitlines()) > 500:
         errs.append("warning: SKILL.md over 500 lines; move detail into references/")
     return errs
 
 
 def main() -> int:
-    dirs = sorted(p for p in ROOT.iterdir() if p.is_dir()) if ROOT.is_dir() else []
+    dirs = skill_dirs()
     failed = 0
     for d in dirs:
         errs = check(d)
         hard = [e for e in errs if not e.startswith("warning")]
-        status = "FAIL" if hard else "ok"
-        print(f"[{status}] {d.name}")
+        print(f"[{'FAIL' if hard else 'ok'}] {d.parent.name}/{d.name}")
         for e in errs:
             print(f"    - {e}")
         failed += bool(hard)

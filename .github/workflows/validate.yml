@@ -16,4 +16,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pyyaml
-      - run: python scripts/validate_skills.py
+      - name: Shared files in sync
+        run: python scripts/sync_shared.py --check
+      - name: Skills follow the spec
+        run: python scripts/validate_skills.py
+      - name: Zips build
+        run: python scripts/bundle.py
