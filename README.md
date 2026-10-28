@@ -25,7 +25,7 @@ skills/
   *Settings → Capabilities → Skills*, or copy it into `~/.claude/skills/` for Claude Code.
 - **ChatGPT / other agents:** add the skill folder using that product's skill import.
 - Or clone the whole repo:
-  `git clone https://github.com/<your-username>/agent-skills.git`
+  `git clone https://github.com/xilverkamui/agent-skills.git`
 
 ## Validation
 
