@@ -7,6 +7,22 @@ Format: Semantic Versioning (MAJOR.MINOR.PATCH).
 
 When updating the skill, bump `metadata.version` and the "Skill version" line in SKILL.md, then add an entry here.
 
+## [2.1.0] - 2026-11-02
+
+### Changed
+- New default structure, modeled on the preferred MoM format: title, Meeting Information (two-column table), Meeting Outcome, Key Points (numbered topics with bold titles), Next Actions.
+- Section titles and table headers are now always English (Meeting Information, Meeting Outcome, Key Points, Next Actions, Discussion Notes, To Be Confirmed). Content stays Indonesian by default.
+- Participants moved into the Meeting Information table instead of a separate section.
+- The separate Meeting Notes section is removed from the default; available as Discussion Notes in the Detailed level.
+- Next Actions table is numbered (No | Action | PIC | Due Date); actions start with a verb.
+
+### Added
+- Meeting Outcome: one-sentence bottom line plus 2-5 decision bullets at the top.
+- Three detail levels: Concise (default), Detailed, Brief.
+- Decisions left open become "Putuskan ..." actions instead of placeholders; placeholders are kept only for information the writer cannot verify.
+- Output format stated explicitly: Markdown in the chat reply only; no document, artifact, or email draft unless explicitly requested.
+- Consistency check across sections in final validation.
+
 ## [2.0.0] - 2026-10-26
 
 ### Changed

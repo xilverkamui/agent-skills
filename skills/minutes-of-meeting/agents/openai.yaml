@@ -1,4 +1,4 @@
 interface:
   display_name: "Minutes of Meeting"
-  short_description: "Create accurate Indonesian MoM from uploads or connected sources"
-  default_prompt: "Use $minutes-of-meeting to turn these meeting notes or transcript into an Indonesian MoM, including meeting information and attendees when supported by the source."
+  short_description: "Scannable Indonesian MoM from uploads or connected sources"
+  default_prompt: "Use $minutes-of-meeting to turn these meeting notes or transcript into an MoM with Meeting Information, Meeting Outcome, Key Points, and Next Actions."
