@@ -4,10 +4,13 @@ description: Example skill showing the repo's structure. Use when the user asks 
 license: MIT
 metadata:
   author: Eriyanto Wibowo
-  version: "1.0"
+  version: "1.0.0"
+  last_updated: "2026-11-04"
 ---
 
 # Hello Skill
+
+Skill version: 1.0.0 (see CHANGELOG.md for history)
 
 A minimal template. Copy this folder, rename it, and update the frontmatter.
 

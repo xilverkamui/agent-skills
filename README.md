@@ -14,6 +14,21 @@ Ready-to-upload zips (one per skill) are on the
   or unzip it into `~/.claude/skills/` for Claude Code.
 - **ChatGPT / other agents:** import the zip or folder using that product's skill import.
 
+## Plugins (Claude Code / Cowork)
+
+Some skills are also published as plugins through the marketplace in
+[`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json). A plugin points at
+the skill folder in `skills/`, so the skill itself stays portable.
+
+```
+/plugin marketplace add xilverkamui/agent-skills
+/plugin install meeting-scheduler@xilverkamui-skills
+```
+
+| Plugin | Skills |
+|---|---|
+| `meeting-scheduler` | [`meeting-scheduler`](skills/meeting-scheduler) |
+
 ## Layout
 
 ```
@@ -23,7 +38,9 @@ skills/                 # skills written for this collection (MIT)
     ├── scripts/        # optional: executable helpers
     ├── references/     # optional: docs loaded on demand
     ├── assets/         # optional: templates, images, data
+    ├── CHANGELOG.md    # required: version history (see VERSIONING.md)
     └── shared.txt      # optional: files to copy in from shared/
+.claude-plugin/         # marketplace.json: plugins that bundle skills from skills/
 shared/                 # single source for files used by several skills
 third-party/            # skills by other authors, each under its own license
 scripts/                # repo tooling (validate, sync, bundle, vendor)
@@ -48,8 +65,14 @@ python scripts/vendor.py add <github-url-to-skill-folder>   # import a third-par
 | [`shared/README.md`](shared/README.md) | How shared files work |
 | [`third-party/README.md`](third-party/README.md) | Importing and updating other people's skills |
 
-Every push runs the shared-file check, validation and a test bundle.
-Pushing a tag such as `v1.0` publishes a Release with all zips attached.
+Every push runs the shared-file check, validation (including version consistency)
+and a test bundle. Pushing a date tag such as `v2026.11.04` publishes a Release with
+all zips attached.
+
+## Versioning
+
+Skills and plugins use Semantic Versioning; releases use date tags.
+See [VERSIONING.md](VERSIONING.md) for the rules and the update checklist.
 
 ## License
 
