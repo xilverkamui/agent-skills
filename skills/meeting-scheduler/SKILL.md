@@ -5,13 +5,13 @@ license: MIT
 compatibility: Draft mode works in any agent. Create mode needs a calendar connector that can search people, check availability, and create events; version 1 supports Microsoft 365 (Outlook and Teams).
 metadata:
   author: Eriyanto Wibowo
-  version: "1.0.0"
+  version: "1.1.0"
   last_updated: "2026-11-04"
 ---
 
 # Meeting Scheduler
 
-Skill version: 1.0.0 (see CHANGELOG.md for history)
+Skill version: 1.1.0 (see CHANGELOG.md for history)
 
 ## Purpose
 
@@ -37,13 +37,22 @@ Apply these unless the user says otherwise:
 |---|---|
 | Time zone | WIB (Asia/Jakarta, UTC+7) |
 | Duration | 60 minutes |
-| Working hours | 08:00-17:00; a slot must start at or after 08:00 and end at or before 17:00 |
-| Working days | Monday-Friday |
+| Working hours | See the schedule below |
 | Slot search window | from now until 10 calendar days ahead |
 | Slots to propose | 2-3, earliest first |
 | Online meeting | Always add a Teams link in create mode, including when a physical room is given. Skip it only when the user explicitly says "offline" or says not to add an online link. |
 | Physical location | Plain text in the event's location field; rooms are not booked as resources |
 | Invitation language | Indonesian |
+
+Working schedule (WIB). Proposed slots must lie completely inside a working block: they may not start before it, end after it, or overlap a break.
+
+| Day | Working blocks | Break |
+|---|---|---|
+| Monday-Thursday | 08:00-12:00, 13:00-17:00 | 12:00-13:00 |
+| Friday | 08:00-11:30, 13:00-17:30 | 11:30-13:00 (break and Friday prayer) |
+| Saturday-Sunday | none | — |
+
+These rules apply to slots you propose. If the user explicitly asks for a time outside working hours or during a break, use it, and mention it once in the preview notes.
 
 ## 3. Gather the request
 

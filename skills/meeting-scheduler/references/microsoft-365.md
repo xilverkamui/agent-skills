@@ -22,7 +22,7 @@ Behaviour observed with this connector:
 - `afterDateTime` and `beforeDateTime` must be UTC (`YYYY-MM-DDTHH:mm:ssZ`). WIB 08:00 is 01:00Z; WIB 17:00 is 10:00Z.
 - Returned slots are in the mailbox time zone (`SE Asia Standard Time` is UTC+7, the same as WIB). Present them as returned; do not convert again.
 - `nowDateTime` in the result is the authoritative current time. If it changes what "tomorrow" or "next week" means, search again with corrected dates.
-- Suggestions are **not** limited to working hours or weekdays. Ask for more candidates than needed (for example `maxCandidates: 20`) and keep only slots that fit the skill's defaults.
+- Suggestions are **not** limited to working hours, breaks, or weekdays (in testing it suggested 12:00 and 17:00 slots). Ask for many candidates (`maxCandidates: 50`) and keep only slots that lie completely inside the working blocks in SKILL.md. If fewer than 2 remain, search again with a later `afterDateTime` before reporting that nothing fits.
 - Attendees whose calendars cannot be read (usually external guests) do not cause an error. They appear in `unavailableParticipants` or with availability `unknown` in each slot. Treat them as unverifiable and name them in the preview.
 
 **Finding slots:** search from now to 10 calendar days ahead in one call, with the meeting duration, then filter.
