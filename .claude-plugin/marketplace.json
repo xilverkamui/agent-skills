@@ -1,0 +1,20 @@
+{
+  "name": "xilverkamui-skills",
+  "owner": {
+    "name": "Eriyanto Wibowo"
+  },
+  "plugins": [
+    {
+      "name": "meeting-scheduler",
+      "description": "Draft Outlook meeting invitations, or check availability and create Teams meetings through a calendar connector after confirmation.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/meeting-scheduler"],
+      "author": { "name": "Eriyanto Wibowo" },
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["meeting", "outlook", "teams", "calendar", "invitation"]
+    }
+  ]
+}

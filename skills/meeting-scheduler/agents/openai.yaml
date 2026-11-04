@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meeting Scheduler"
+  short_description: "Draft Outlook invitations, or find slots and create Teams meetings"
+  default_prompt: "Use $meeting-scheduler to set up a meeting from this agenda."
