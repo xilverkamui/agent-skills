@@ -10,11 +10,42 @@
       "version": "1.1.0",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/meeting-scheduler"],
-      "author": { "name": "Eriyanto Wibowo" },
+      "skills": [
+        "./skills/meeting-scheduler"
+      ],
+      "author": {
+        "name": "Eriyanto Wibowo"
+      },
       "license": "MIT",
       "category": "productivity",
-      "keywords": ["meeting", "outlook", "teams", "calendar", "invitation"]
+      "keywords": [
+        "meeting",
+        "outlook",
+        "teams",
+        "calendar",
+        "invitation"
+      ]
+    },
+    {
+      "name": "push-skill-to-github",
+      "description": "Publish or update an Agent Skill in the xilverkamui/agent-skills GitHub repo, following the repo's versioning rules.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/push-skill-to-github"
+      ],
+      "author": {
+        "name": "Eriyanto Wibowo"
+      },
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "github",
+        "skills",
+        "publish",
+        "versioning"
+      ]
     }
   ]
 }

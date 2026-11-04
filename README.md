@@ -28,6 +28,7 @@ the skill folder in `skills/`, so the skill itself stays portable.
 | Plugin | Skills |
 |---|---|
 | `meeting-scheduler` | [`meeting-scheduler`](skills/meeting-scheduler) |
+| `push-skill-to-github` | [`push-skill-to-github`](skills/push-skill-to-github) |
 
 ## Layout
 
