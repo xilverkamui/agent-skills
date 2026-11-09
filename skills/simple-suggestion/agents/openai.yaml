@@ -1,0 +1,4 @@
+interface:
+  display_name: "Simple Suggestion (Kaizen)"
+  short_description: "Draft an LNK Simple Suggestion and fill the official FRM-DCI-001 Excel form"
+  default_prompt: "Use $simple-suggestion to create a Simple Suggestion for this improvement."

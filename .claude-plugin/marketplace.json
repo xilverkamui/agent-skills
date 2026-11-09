@@ -46,6 +46,29 @@
         "publish",
         "versioning"
       ]
+    },
+    {
+      "name": "simple-suggestion",
+      "description": "Draft an LNK Simple Suggestion (Kaizen) from a short description of an implemented improvement and fill the official FRM-DCI-001 Excel form with an ANAKONDA sheet.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/simple-suggestion"
+      ],
+      "author": {
+        "name": "Eriyanto Wibowo"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "kaizen",
+        "simple suggestion",
+        "continuous improvement",
+        "qcdsm",
+        "anakonda",
+        "excel"
+      ]
     }
   ]
 }
