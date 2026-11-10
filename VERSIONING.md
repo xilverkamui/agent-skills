@@ -59,7 +59,7 @@ Plugins are listed in `.claude-plugin/marketplace.json`; each points at skill fo
 
 A release publishes one zip per skill (see `.github/workflows/release.yml`). Because skills have independent versions, release tags use the date: `vYYYY.MM.DD`, with `.2`, `.3`, … for further releases on the same day (`v2026.11.04.2`).
 
-- Tag only when a release is wanted; not every push needs one.
+- Every push to `main` is followed by a release tag, so the newest zips are always at `releases/latest/download/<skill-name>.zip`.
 - Never move or delete a published tag.
 
 ## 4. Commit messages

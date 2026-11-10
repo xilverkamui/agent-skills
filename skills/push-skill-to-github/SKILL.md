@@ -4,13 +4,13 @@ description: "Publish or update an Agent Skill in the user's GitHub repo xilverk
 license: MIT
 metadata:
   author: Eriyanto Wibowo
-  version: "1.0.0"
-  last_updated: "2026-11-04"
+  version: "1.0.1"
+  last_updated: "2026-11-09"
 ---
 
 # Push skill to GitHub
 
-Skill version: 1.0.0 (see CHANGELOG.md for history)
+Skill version: 1.0.1 (see CHANGELOG.md for history)
 
 Repo: https://github.com/xilverkamui/agent-skills (public, MIT license, branch `main`).
 Skills follow the Agent Skills spec (agentskills.io).
@@ -44,7 +44,7 @@ Layout:
 4. Show the user `git status` and a short diff summary; commit with a message from `VERSIONING.md`: `Add <skill-name> v1.0.0`, `<skill-name> vX.Y.Z: <summary>`, or `Repo: <summary>`. Never commit `dist/`.
 5. Push: `git -c http.extraheader="Authorization: Basic $AUTH" push origin main`.
 6. Verify with `git ls-remote` (same header) that `refs/heads/main` equals the local HEAD, then give the link `https://github.com/xilverkamui/agent-skills/tree/main/<skills|third-party>/<skill-name>`.
-7. Release (only when the user asks): create and push a date tag, e.g. `git tag v2026.11.04 && git -c http.extraheader=... push origin v2026.11.04` (add `.2`, `.3` for more releases on the same day); GitHub Actions publishes a Release with all zips.
+7. Release (every push, no need to ask): right after step 6, create and push a date tag, e.g. `git tag v2026.11.04 && git -c http.extraheader=... push origin v2026.11.04` (add `.2`, `.3` for more releases on the same day); GitHub Actions publishes a Release with all zips. The newest Release is marked Latest automatically, so the newest zip of any skill is always at `https://github.com/xilverkamui/agent-skills/releases/latest/download/<skill-name>.zip`; give the user that link. Do not create or move a `latest` tag.
 
 ## Notes
 

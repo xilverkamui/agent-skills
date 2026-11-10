@@ -2,6 +2,12 @@
 
 Versioning follows the repository rules in [VERSIONING.md](https://github.com/xilverkamui/agent-skills/blob/main/VERSIONING.md).
 
+## [1.0.1] - 2026-11-09
+
+### Changed
+- Every push is followed by a date-tag release, so the newest zips are always published.
+- Release step gives the stable `releases/latest/download/<skill-name>.zip` link; no moving `latest` tag.
+
 ## [1.0.0] - 2026-11-04
 
 ### Added

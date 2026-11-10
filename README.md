@@ -10,6 +10,9 @@ compatible agent (Claude, ChatGPT, and others that support `SKILL.md`).
 Ready-to-upload zips (one per skill) are on the
 [Releases](https://github.com/xilverkamui/agent-skills/releases) page.
 
+The newest zip of a skill is always at
+`https://github.com/xilverkamui/agent-skills/releases/latest/download/<skill-name>.zip`.
+
 - **Claude (claude.ai / Cowork):** upload the zip under *Settings → Capabilities → Skills*,
   or unzip it into `~/.claude/skills/` for Claude Code.
 - **ChatGPT / other agents:** import the zip or folder using that product's skill import.
