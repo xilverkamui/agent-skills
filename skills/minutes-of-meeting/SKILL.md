@@ -1,16 +1,16 @@
 ---
 name: minutes-of-meeting
-description: Create, revise, refine, or update accurate Minutes of Meeting (MoM / notulen / risalah rapat) from meeting notes, transcripts, recording summaries, existing minutes, or combined sources, whether uploaded or pasted by the user or retrieved through a connected meeting, transcript, chat, storage, or calendar connector. Use whenever the user asks to make, fix, or update an MoM or notulen, or to summarize a specific meeting into minutes (e.g. "buatkan MoM meeting tadi"). Produces a scannable MoM with meeting information, outcome, key points by topic, and a numbered action table. Output is Markdown in the chat reply. Content is Indonesian by default; section titles are English.
+description: Create, revise, refine, or update accurate Minutes of Meeting (MoM / notulen / risalah rapat) from meeting notes, transcripts, recording summaries, existing minutes, or combined sources, whether uploaded or pasted by the user or retrieved through a connected meeting, transcript, chat, storage, or calendar connector. Use whenever the user asks to make, fix, or update an MoM or notulen, or to summarize a specific meeting into minutes (e.g. "buatkan MoM meeting tadi"). Produces a scannable MoM with meeting information, outcome, key points by topic, and a numbered action table. Output is Markdown in the chat reply, followed by an offer to create a reply-all email draft to the meeting invitation. Content is Indonesian by default; section titles are English.
 license: MIT
 metadata:
   author: Eriyanto Wibowo
-  version: "2.1.0"
-  last_updated: "2026-11-02"
+  version: "3.0.0"
+  last_updated: "2026-11-10"
 ---
 
 # Minutes of Meeting
 
-Skill version: 2.1.0 (see CHANGELOG.md for history)
+Skill version: 3.0.0 (see CHANGELOG.md for history)
 
 ## Purpose
 
@@ -90,6 +90,8 @@ Ask when missing, ambiguous, or conflicting information could materially change 
 
 Do not ask when wording, organization, or formatting can resolve the issue without changing meaning. Ask the minimum number of questions, grouped in one message, before producing the final MoM.
 
+Include the Pak/Bu confirmation (Section 8.1) in the same message when it is needed.
+
 ### 6.2 Fallback when asking is not possible
 
 Use placeholders instead of guessing when:
@@ -141,6 +143,21 @@ Write like a competent meeting participant, not a corporate template:
 - Keep common workplace terms in English when the team uses them (dashboard, card, PIC, deadline, go-live, GL).
 - Slightly conversational phrasing is fine when it is clearer.
 - Avoid legalistic, overly formal, or verbose wording, jargon the team does not use, emojis, and personal commentary.
+
+### 8.1 Referring to people
+
+In running text (Meeting Outcome, Key Points, Discussion Notes, the Action column of Next Actions, To Be Confirmed), always put "Pak" or "Bu" before a person's name: "Pak Hendrik menyampaikan …", never "Hendrik menyampaikan …". Use the name the person is called in the meeting; if unknown, use the first name. In English content, use "Mr." / "Ms." the same way.
+
+Write names without Pak/Bu only in:
+
+- the Participants row of Meeting Information, and
+- the PIC column of Next Actions.
+
+Choosing Pak or Bu:
+
+1. Use the form the source itself uses (for example the transcript says "Bu Natalia").
+2. Otherwise, never guess from the name. Ask the user which one applies, listing every person who needs it, in the clarification message (Section 6.1).
+3. Never write a placeholder for Pak/Bu. If the user cannot be asked (automated run, or the user asks to proceed without answering), write that person's name without Pak/Bu.
 
 ---
 
@@ -221,7 +238,7 @@ A numbered table:
 Rules:
 
 - Start every action with a verb. Keep it specific enough to be done without rereading the MoM; include key figures or object names when useful.
-- PIC and Due Date only when supported by the source. Use `-` for an unknown due date. For an unknown PIC use "Belum ditentukan".
+- PIC is the name only, without Pak/Bu (Section 8.1). PIC and Due Date only when supported by the source. Use `-` for an unknown due date. For an unknown PIC use "Belum ditentukan".
 - A due date may be a relative condition when that is what was agreed (for example "Sebelum ROIC tayang").
 - Turn each decision left open into a "Putuskan …" action, with the options named.
 - Order: explicit actions first, then decisions to make, then inferred actions.
@@ -261,7 +278,24 @@ For another content language, translate both lines; keep the link text "Collab M
 
 Return the MoM in the chat reply as standard Markdown: a level-1 heading for the title, level-2 headings for sections, numbered lists for Key Points, and Markdown tables for Meeting Information and Next Actions.
 
-Do not create a separate document, file, artifact, or email draft for the MoM unless the user explicitly asks for one in the current request.
+Do not create a separate document, file, artifact, or email draft for the MoM unless the user asks for one.
+
+### 11.1 Email draft offer
+
+After the MoM, add one short line, separate from the MoM, offering a reply-all email draft to the meeting invitation, for example:
+
+> Mau saya buatkan draft email reply-all ke undangan meeting ini?
+
+Add this offer only when a connected mail tool can create reply-all drafts, and not in automated runs. It is not part of the MoM and must not be included in the email body.
+
+### 11.2 Creating the email draft (only after the user accepts)
+
+1. Find the invitation email for this meeting by title and date in the inbox and in sent items (the user may be the organizer). If several match, ask the user to pick one.
+2. Create a **reply-all draft** on that message. Never send it.
+3. Body: one short opening line in the content language (for example "Berikut MoM meeting <judul> pada <tanggal>."), then the MoM including the closing lines, converted to simple HTML: headings, paragraphs, lists, and tables. Use only formatting the mail tool accepts; no styling markup.
+4. If the user's own address appears among the recipients, remove it.
+5. Give the user the draft link and a short list of recipients.
+6. If no invitation email is found, say so and ask whether to create a new draft to the participants instead. Do not create one without the user's answer.
 
 ---
 
@@ -297,6 +331,8 @@ Before delivering, check that:
 - Ambiguity was clarified or marked with a placeholder, and every placeholder is listed in To Be Confirmed.
 - Participants follow the attendance rules.
 - The closing lines and Collab MoM link are included unless overridden.
+- Every name in running text has Pak/Bu as confirmed or as given in the source; names in the Participants row and PIC column have none; no Pak/Bu placeholder exists.
 - The MoM is returned as Markdown in the chat reply.
+- The email draft offer follows the MoM when a mail tool is available (not in automated runs).
 
-Return only the MoM, unless clarification is required. If the source was truncated, one short note before the MoM is allowed.
+Return only the MoM and the email draft offer, unless clarification is required. If the source was truncated, one short note before the MoM is allowed.

@@ -7,6 +7,16 @@ Format: Semantic Versioning (MAJOR.MINOR.PATCH).
 
 When updating the skill, bump `metadata.version` and the "Skill version" line in SKILL.md, then add an entry here.
 
+## [3.0.0] - 2026-11-10
+
+### Changed
+- People are referred to with "Pak" or "Bu" in running text (Meeting Outcome, Key Points, Discussion Notes, Action column, To Be Confirmed). Names stay plain only in the Participants row and the PIC column.
+- When the source does not show whether someone is Pak or Bu, the skill now asks the user instead of guessing. No placeholder is written; in automated runs the name is written without Pak/Bu.
+
+### Added
+- After the MoM, an offer to create a reply-all email draft to the meeting invitation (only when a mail connector can create reply drafts).
+- On acceptance: finds the invitation in inbox or sent items, creates a reply-all draft (never sends) with the MoM as HTML, and asks before creating a new draft if no invitation is found.
+
 ## [2.1.0] - 2026-11-02
 
 ### Changed

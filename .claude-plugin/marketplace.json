@@ -69,6 +69,28 @@
         "anakonda",
         "excel"
       ]
+    },
+    {
+      "name": "minutes-of-meeting",
+      "description": "Turn meeting notes, transcripts, or connected meeting sources into a scannable Indonesian MoM, with an optional reply-all email draft to the meeting invitation.",
+      "version": "3.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/minutes-of-meeting"
+      ],
+      "author": {
+        "name": "Eriyanto Wibowo"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "minutes of meeting",
+        "mom",
+        "notulen",
+        "meeting",
+        "outlook"
+      ]
     }
   ]
 }
