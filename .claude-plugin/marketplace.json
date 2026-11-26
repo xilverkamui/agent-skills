@@ -34,12 +34,13 @@
     },
     {
       "name": "lnk-toolkit",
-      "description": "Write the weekly Friday team email from an IT manager to their team in natural Bahasa Indonesia, with an internal self-critique before delivery.",
-      "version": "1.0.0",
+      "description": "Everyday productivity skills: write the weekly Friday team email in natural Bahasa Indonesia with an internal self-critique, and generate presentation slides as polished 16:9 images from a fixed visual framework.",
+      "version": "1.1.0",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/lnk-team-weekly"
+        "./skills/lnk-team-weekly",
+        "./skills/lnk-visual-presentation"
       ],
       "author": {
         "name": "Eriyanto Wibowo"
@@ -52,7 +53,10 @@
         "bahasa indonesia",
         "manager",
         "newsletter",
-        "outlook"
+        "outlook",
+        "presentation",
+        "slides",
+        "visual design"
       ]
     },
     {
