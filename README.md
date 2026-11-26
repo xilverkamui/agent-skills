@@ -31,6 +31,7 @@ the skill folder in `skills/`, so the skill itself stays portable.
 | Plugin | Skills |
 |---|---|
 | `admin-assistant` | [`meeting-scheduler`](skills/meeting-scheduler), [`minutes-of-meeting`](skills/minutes-of-meeting) |
+| `lnk-toolkit` | [`lnk-team-weekly`](skills/lnk-team-weekly) |
 | `push-skill-to-github` | [`push-skill-to-github`](skills/push-skill-to-github) |
 | `simple-suggestion` | [`simple-suggestion`](skills/simple-suggestion) |
 

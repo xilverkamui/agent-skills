@@ -33,6 +33,29 @@
       ]
     },
     {
+      "name": "lnk-toolkit",
+      "description": "Write the weekly Friday team email from an IT manager to their team in natural Bahasa Indonesia, with an internal self-critique before delivery.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/lnk-team-weekly"
+      ],
+      "author": {
+        "name": "Eriyanto Wibowo"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "weekly email",
+        "team communication",
+        "bahasa indonesia",
+        "manager",
+        "newsletter",
+        "outlook"
+      ]
+    },
+    {
       "name": "push-skill-to-github",
       "description": "Publish or update an Agent Skill in the xilverkamui/agent-skills GitHub repo, following the repo's versioning rules.",
       "version": "1.0.1",
