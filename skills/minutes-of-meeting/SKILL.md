@@ -4,13 +4,13 @@ description: Create, revise, refine, or update accurate Minutes of Meeting (MoM 
 license: MIT
 metadata:
   author: Eriyanto Wibowo
-  version: "3.0.0"
-  last_updated: "2026-11-10"
+  version: "3.1.0"
+  last_updated: "2026-11-25"
 ---
 
 # Minutes of Meeting
 
-Skill version: 3.0.0 (see CHANGELOG.md for history)
+Skill version: 3.1.0 (see CHANGELOG.md for history)
 
 ## Purpose
 
@@ -264,13 +264,7 @@ A bullet list of every placeholder, matching its text and naming the section whe
 
 ## 10. Closing
 
-Unless overridden by the user or the calling workflow, end with these two lines:
-
-> Mohon rekan-rekan dapat memberikan masukan atau koreksi apabila terdapat hal yang perlu disesuaikan dari MoM ini.
-
-> MoM ini juga tersedia di aplikasi [Collab MoM](https://collaboration.oneltl.com/mom/list)
-
-For another content language, translate both lines; keep the link text "Collab MoM" and the URL `https://collaboration.oneltl.com/mom/list` unchanged.
+Unless overridden by the user or the calling workflow, end with the closing lines in `references/organization.md` (section "Minutes of Meeting closing"), following its translation rule. If that file or section is missing, use its neutral fallback: one line asking for feedback or corrections, without an application link.
 
 ---
 
@@ -330,7 +324,7 @@ Before delivering, check that:
 - Section titles and table headers are in English; content follows the content language.
 - Ambiguity was clarified or marked with a placeholder, and every placeholder is listed in To Be Confirmed.
 - Participants follow the attendance rules.
-- The closing lines and Collab MoM link are included unless overridden.
+- The closing lines from `references/organization.md` are included unless overridden.
 - Every name in running text has Pak/Bu as confirmed or as given in the source; names in the Participants row and PIC column have none; no Pak/Bu placeholder exists.
 - The MoM is returned as Markdown in the chat reply.
 - The email draft offer follows the MoM when a mail tool is available (not in automated runs).

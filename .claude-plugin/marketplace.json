@@ -5,13 +5,14 @@
   },
   "plugins": [
     {
-      "name": "meeting-scheduler",
-      "description": "Draft Outlook meeting invitations, or check availability and create Teams meetings through a calendar connector after confirmation.",
-      "version": "1.1.0",
+      "name": "admin-assistant",
+      "description": "Secretary-style administrative work: schedule meetings and draft invitations, then turn meeting notes or transcripts into a scannable MoM with an optional reply-all draft. Organization defaults live in each skill's references/organization.md.",
+      "version": "1.0.0",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/meeting-scheduler"
+        "./skills/meeting-scheduler",
+        "./skills/minutes-of-meeting"
       ],
       "author": {
         "name": "Eriyanto Wibowo"
@@ -19,7 +20,12 @@
       "license": "MIT",
       "category": "productivity",
       "keywords": [
+        "admin",
+        "secretary",
         "meeting",
+        "minutes of meeting",
+        "mom",
+        "notulen",
         "outlook",
         "teams",
         "calendar",
@@ -68,28 +74,6 @@
         "qcdsm",
         "anakonda",
         "excel"
-      ]
-    },
-    {
-      "name": "minutes-of-meeting",
-      "description": "Turn meeting notes, transcripts, or connected meeting sources into a scannable Indonesian MoM, with an optional reply-all email draft to the meeting invitation.",
-      "version": "3.0.0",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/minutes-of-meeting"
-      ],
-      "author": {
-        "name": "Eriyanto Wibowo"
-      },
-      "license": "MIT",
-      "category": "productivity",
-      "keywords": [
-        "minutes of meeting",
-        "mom",
-        "notulen",
-        "meeting",
-        "outlook"
       ]
     }
   ]

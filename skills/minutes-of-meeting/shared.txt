@@ -1,0 +1,2 @@
+# Organization-specific defaults (single source: shared/organization.md)
+organization.md -> references/organization.md

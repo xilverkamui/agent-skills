@@ -25,14 +25,30 @@ the skill folder in `skills/`, so the skill itself stays portable.
 
 ```
 /plugin marketplace add xilverkamui/agent-skills
-/plugin install meeting-scheduler@xilverkamui-skills
+/plugin install admin-assistant@xilverkamui-skills
 ```
 
 | Plugin | Skills |
 |---|---|
-| `meeting-scheduler` | [`meeting-scheduler`](skills/meeting-scheduler) |
+| `admin-assistant` | [`meeting-scheduler`](skills/meeting-scheduler), [`minutes-of-meeting`](skills/minutes-of-meeting) |
 | `push-skill-to-github` | [`push-skill-to-github`](skills/push-skill-to-github) |
 | `simple-suggestion` | [`simple-suggestion`](skills/simple-suggestion) |
+
+**Migrating:** the single-skill plugins `meeting-scheduler` and `minutes-of-meeting` were replaced by
+`admin-assistant`. Uninstall them before installing `admin-assistant`, so the same skill is not installed twice:
+
+```
+/plugin uninstall meeting-scheduler@xilverkamui-skills
+/plugin uninstall minutes-of-meeting@xilverkamui-skills
+```
+
+### Organization profile
+
+Skills in `admin-assistant` read organization-specific defaults (time zone, working schedule,
+MoM closing lines) from `references/organization.md`. The single source is
+[`shared/organization.md`](shared/organization.md), currently filled for LNK. To adapt the skills for
+another organization, edit that file and run `python scripts/sync_shared.py`. Missing values fall back
+to neutral defaults described in the file.
 
 ## Layout
 

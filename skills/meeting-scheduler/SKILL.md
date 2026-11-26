@@ -5,13 +5,13 @@ license: MIT
 compatibility: Draft mode works in any agent. Create mode needs a calendar connector that can search people, check availability, and create events; version 1 supports Microsoft 365 (Outlook and Teams).
 metadata:
   author: Eriyanto Wibowo
-  version: "1.1.0"
-  last_updated: "2026-11-04"
+  version: "1.2.0"
+  last_updated: "2026-11-25"
 ---
 
 # Meeting Scheduler
 
-Skill version: 1.1.0 (see CHANGELOG.md for history)
+Skill version: 1.2.0 (see CHANGELOG.md for history)
 
 ## Purpose
 
@@ -31,26 +31,22 @@ Never say an event was created, an invitation was sent, a slot is free, or a Tea
 
 ## 2. Defaults
 
+Organization-specific defaults (time zone and working schedule) are in `references/organization.md`. Read it before proposing or validating any time, and use its fallbacks when a value is missing.
+
 Apply these unless the user says otherwise:
 
 | Setting | Default |
 |---|---|
-| Time zone | WIB (Asia/Jakarta, UTC+7) |
+| Time zone | Organization time zone (`references/organization.md`) |
 | Duration | 60 minutes |
-| Working hours | See the schedule below |
+| Working hours | Organization working schedule (`references/organization.md`) |
 | Slot search window | from now until 10 calendar days ahead |
 | Slots to propose | 2-3, earliest first |
 | Online meeting | Always add a Teams link in create mode, including when a physical room is given. Skip it only when the user explicitly says "offline" or says not to add an online link. |
 | Physical location | Plain text in the event's location field; rooms are not booked as resources |
 | Invitation language | Indonesian |
 
-Working schedule (WIB). Proposed slots must lie completely inside a working block: they may not start before it, end after it, or overlap a break.
-
-| Day | Working blocks | Break |
-|---|---|---|
-| Monday-Thursday | 08:00-12:00, 13:00-17:00 | 12:00-13:00 |
-| Friday | 08:00-11:30, 13:00-17:30 | 11:30-13:00 (break and Friday prayer) |
-| Saturday-Sunday | none | — |
+Proposed slots must lie completely inside a working block of the organization schedule: they may not start before it, end after it, or overlap a break.
 
 These rules apply to slots you propose. If the user explicitly asks for a time outside working hours or during a break, use it, and mention it once in the preview notes.
 

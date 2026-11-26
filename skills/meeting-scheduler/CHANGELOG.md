@@ -2,6 +2,15 @@
 
 Versioning follows the repository rules in [VERSIONING.md](https://github.com/xilverkamui/agent-skills/blob/main/VERSIONING.md).
 
+## [1.2.0] - 2026-11-25
+
+### Changed
+- Organization-specific defaults (time zone and working schedule) moved to `references/organization.md`, synced from the repo's `shared/organization.md`. Behaviour for LNK is unchanged.
+
+### Added
+- Neutral fallbacks when the organization profile is missing a value: the user's time zone, Monday-Friday 09:00-17:00 with a 12:00-13:00 break.
+- Now also distributed in the `admin-assistant` plugin, which replaces the single-skill `meeting-scheduler` plugin.
+
 ## [1.1.0] - 2026-11-04
 
 ### Changed

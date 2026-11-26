@@ -7,6 +7,15 @@ Format: Semantic Versioning (MAJOR.MINOR.PATCH).
 
 When updating the skill, bump `metadata.version` and the "Skill version" line in SKILL.md, then add an entry here.
 
+## [3.1.0] - 2026-11-25
+
+### Changed
+- The MoM closing lines (including the Collab MoM link) moved to `references/organization.md`, synced from the repo's `shared/organization.md`. Output for LNK is unchanged.
+
+### Added
+- Neutral fallback when the organization profile has no closing: a single feedback line without an application link.
+- Now also distributed in the `admin-assistant` plugin, which replaces the single-skill `minutes-of-meeting` plugin.
+
 ## [3.0.0] - 2026-11-10
 
 ### Changed

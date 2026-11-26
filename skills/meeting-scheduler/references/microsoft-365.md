@@ -19,10 +19,10 @@ Read this only in create mode with a Microsoft 365 connector. Tool names below a
 Behaviour observed with this connector:
 
 - The organizer is included automatically; pass only the attendees.
-- `afterDateTime` and `beforeDateTime` must be UTC (`YYYY-MM-DDTHH:mm:ssZ`). WIB 08:00 is 01:00Z; WIB 17:00 is 10:00Z.
-- Returned slots are in the mailbox time zone (`SE Asia Standard Time` is UTC+7, the same as WIB). Present them as returned; do not convert again.
+- `afterDateTime` and `beforeDateTime` must be UTC (`YYYY-MM-DDTHH:mm:ssZ`). Convert from the organization time zone in `organization.md` (for example, at UTC+7, 08:00 local is 01:00Z).
+- Returned slots are in the mailbox time zone. If that equals the organization time zone (for example `SE Asia Standard Time` for WIB), present them as returned; do not convert again.
 - `nowDateTime` in the result is the authoritative current time. If it changes what "tomorrow" or "next week" means, search again with corrected dates.
-- Suggestions are **not** limited to working hours, breaks, or weekdays (in testing it suggested 12:00 and 17:00 slots). Ask for many candidates (`maxCandidates: 50`) and keep only slots that lie completely inside the working blocks in SKILL.md. If fewer than 2 remain, search again with a later `afterDateTime` before reporting that nothing fits.
+- Suggestions are **not** limited to working hours, breaks, or weekdays (in testing it suggested 12:00 and 17:00 slots). Ask for many candidates (`maxCandidates: 50`) and keep only slots that lie completely inside the working blocks in `organization.md`. If fewer than 2 remain, search again with a later `afterDateTime` before reporting that nothing fits.
 - Attendees whose calendars cannot be read (usually external guests) do not cause an error. They appear in `unavailableParticipants` or with availability `unknown` in each slot. Treat them as unverifiable and name them in the preview.
 
 **Finding slots:** search from now to 10 calendar days ahead in one call, with the meeting duration, then filter.
@@ -37,7 +37,7 @@ Behaviour observed with this connector:
 Call `outlook_create_event` with:
 
 - `subject`: the subject from the preview.
-- `start` and `end`: `{dateTime: "YYYY-MM-DDTHH:mm:00", timeZone: "Asia/Jakarta"}` (local wall-clock time, no offset).
+- `start` and `end`: `{dateTime: "YYYY-MM-DDTHH:mm:00", timeZone: "<IANA name from organization.md>"}` (local wall-clock time, no offset; for example `Asia/Jakarta`).
 - `attendees`: `{email, name, type}` with `type` `required`, or `optional` when the user marks someone optional. Maximum 50.
 - `isOnlineMeeting`: `true` unless the meeting is explicitly offline. Outlook adds the Teams join details; this cannot be removed afterwards, which is why the preview must state it.
 - `location`: the physical location as plain text, only if given.
