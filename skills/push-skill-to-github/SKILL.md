@@ -4,13 +4,13 @@ description: "Publish or update an Agent Skill in the user's GitHub repo xilverk
 license: MIT
 metadata:
   author: Eriyanto Wibowo
-  version: "1.0.1"
-  last_updated: "2026-11-09"
+  version: "1.1.0"
+  last_updated: "2026-11-27"
 ---
 
 # Push skill to GitHub
 
-Skill version: 1.0.1 (see CHANGELOG.md for history)
+Skill version: 1.1.0 (see CHANGELOG.md for history)
 
 Repo: https://github.com/xilverkamui/agent-skills (public, MIT license, branch `main`).
 Skills follow the Agent Skills spec (agentskills.io).
@@ -23,14 +23,19 @@ Layout:
 ## Before pushing
 
 1. Confirm the user has approved the final skill content.
-2. Ask the user for a fine-grained PAT (scoped to this repo; Contents and Workflows read/write) if one has not been given in this session. Never write the token to a file, git config, remote URL, or commit; use it only inline per command.
+2. Pick the git access route:
+   - **Claude GitHub App attached to the session (preferred).** If a tool such as `add_repo` is available, attach `xilverkamui/agent-skills` with push access and clone the repo it names; no token is needed and none should be asked for. In these sessions plain `git push origin main` works, but pushing tags (git or API) and uploading release files are blocked, so never try them.
+   - **No App available (fallback).** Ask the user for a fine-grained PAT (scoped to this repo; Contents and Workflows read/write) if one has not been given in this session. Never write the token to a file, git config, remote URL, or commit; use it only inline per command. If a PAT is pasted into chat, remind the user to revoke it afterwards.
 
 ## Steps
 
 1. Clone (or reuse an existing clone):
    ```bash
-   AUTH=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
-   git -c http.extraheader="Authorization: Basic $AUTH" clone https://github.com/xilverkamui/agent-skills.git
+   # App route (no token): the session's git setup supplies credentials
+   git clone https://github.com/xilverkamui/agent-skills.git
+   # PAT fallback only:
+   # AUTH=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+   # git -c http.extraheader="Authorization: Basic $AUTH" clone https://github.com/xilverkamui/agent-skills.git
    cd agent-skills
    git config user.name "Eriyanto Wibowo"
    git config user.email "112789454+xilverkamui@users.noreply.github.com"
@@ -42,11 +47,12 @@ Layout:
    - **Someone else's skill:** `python3 scripts/vendor.py add <github-url-to-skill-folder>`. If it refuses (no license / proprietary), do not copy it; offer to add a link in README instead. Tell the user to review its `scripts/` before use. For edits to a vendored skill, note them under "Local changes" in its `UPSTREAM.md`. Use `vendor.py check` / `update` to refresh.
 3. Check: `python3 scripts/bundle.py` (runs the shared-file check and validation, then builds `dist/*.zip`). Fix every FAIL. Offer the zip to the user if they want it now.
 4. Show the user `git status` and a short diff summary; commit with a message from `VERSIONING.md`: `Add <skill-name> v1.0.0`, `<skill-name> vX.Y.Z: <summary>`, or `Repo: <summary>`. Never commit `dist/`.
-5. Push: `git -c http.extraheader="Authorization: Basic $AUTH" push origin main`.
-6. Verify with `git ls-remote` (same header) that `refs/heads/main` equals the local HEAD, then give the link `https://github.com/xilverkamui/agent-skills/tree/main/<skills|third-party>/<skill-name>`.
-7. Release (every push, no need to ask): right after step 6, create and push a date tag, e.g. `git tag v2026.11.04 && git -c http.extraheader=... push origin v2026.11.04` (add `.2`, `.3` for more releases on the same day); GitHub Actions publishes a Release with all zips. The newest Release is marked Latest automatically, so the newest zip of any skill is always at `https://github.com/xilverkamui/agent-skills/releases/latest/download/<skill-name>.zip`; give the user that link. Do not create or move a `latest` tag.
+5. Push: `git push origin main` (PAT fallback: `git -c http.extraheader="Authorization: Basic $AUTH" push origin main`).
+6. Verify with `git ls-remote origin refs/heads/main` (PAT fallback: same header) that it equals the local HEAD, then give the link `https://github.com/xilverkamui/agent-skills/tree/main/<skills|third-party>/<skill-name>`.
+7. Release (automatic, nothing to push): the `Release zips` workflow runs on every push to `main` that changes `skills/`, `shared/` or `third-party/`. It creates the date tag (`vYYYY.MM.DD`, then `.2`, `.3` on the same day, Jakarta time) and a Release with all zips. Do not create or push tags yourself, and do not create or move a `latest` tag. Check it about a minute after the push (read-only REST works): `gh api repos/xilverkamui/agent-skills/releases/latest --jq '{tag_name,target_commitish,assets:[.assets[].name]}'`. When `target_commitish` equals the pushed commit and the zip is listed, give the user `https://github.com/xilverkamui/agent-skills/releases/latest/download/<skill-name>.zip`. If no release appears, ask the user to check the Actions tab.
+   - A push that changes only other files (workflow, README, docs) does not trigger a release. For one, ask the user to press **Run workflow** on `Release zips` in the Actions tab, or run `gh api --method POST repos/xilverkamui/agent-skills/actions/workflows/release.yml/dispatches -f ref=main` if the session allows it.
 
 ## Notes
 
-- The GitHub REST/GraphQL API may be blocked from the session; git over HTTPS works. Ask the user to check the Actions/Releases tabs.
+- In sessions with the Claude GitHub App, the proxy blocks: tag creation (git push or API), uploading release assets, and GraphQL (`gh release upload`, `gh pr`-style GraphQL calls). A 403 on these is a session policy, not a token problem; do not retry or work around it. Use the workflow above instead.
 - Never push without the user's explicit OK, and never force-push.

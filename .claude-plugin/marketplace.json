@@ -62,7 +62,7 @@
     {
       "name": "push-skill-to-github",
       "description": "Publish or update an Agent Skill in the xilverkamui/agent-skills GitHub repo, following the repo's versioning rules.",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "source": "./",
       "strict": false,
       "skills": [
