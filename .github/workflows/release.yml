@@ -1,14 +1,27 @@
 name: Release zips
 
-# Push a version tag (e.g. `git tag v1.0 && git push origin v1.0`) to publish a
-# GitHub Release with one ready-to-upload zip per skill. If the release already
-# exists (e.g. created in the GitHub UI or via API), the zips are added to it.
+# Publishes a GitHub Release with one ready-to-upload zip per skill.
+#
+# - Push to main that changes skills/, shared/ or third-party/: a date tag
+#   (vYYYY.MM.DD, then .2, .3 on the same day) is created automatically.
+# - "Run workflow" button (Actions tab): same thing, on demand.
+# - Pushing a v* tag by hand still works; the zips are added to its release.
 on:
   push:
+    branches: [main]
+    paths:
+      - "skills/**"
+      - "shared/**"
+      - "third-party/**"
     tags: ["v*"]
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -24,8 +37,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            gh release upload "$GITHUB_REF_NAME" dist/*.zip --clobber
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            TAG="$GITHUB_REF_NAME"
           else
-            gh release create "$GITHUB_REF_NAME" dist/*.zip --title "$GITHUB_REF_NAME" --generate-notes
+            DATE=$(TZ=Asia/Jakarta date +%Y.%m.%d)
+            TAG="v$DATE"
+            n=1
+            while gh release view "$TAG" >/dev/null 2>&1 || [ -n "$(git ls-remote --tags origin "refs/tags/$TAG")" ]; do
+              n=$((n+1))
+              TAG="v$DATE.$n"
+            done
+          fi
+          echo "Release tag: $TAG"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist/*.zip --clobber
+          else
+            gh release create "$TAG" dist/*.zip --target "$GITHUB_SHA" --title "$TAG" --generate-notes
           fi
