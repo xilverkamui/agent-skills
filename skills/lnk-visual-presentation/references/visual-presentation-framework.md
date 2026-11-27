@@ -1,6 +1,8 @@
 # Visual Presentation Framework
 
-**Purpose:** Design rules for generating presentation slides as high-resolution images.
+**Purpose:** Single source of truth for the design rules of generated presentation slides: geometry, title placement, reserved zones, visual language, illustration, prohibited elements, and the HARD/SOFT rule catalog with tolerances.
+
+`SKILL.md` holds the workflow and failure handling. `prompt-template.md` holds the prompt wording. Neither repeats the rules below.
 
 ---
 
@@ -8,12 +10,22 @@
 
 Follow this priority order:
 
-1. The user's explicit instruction for the current slide
+1. The user's explicit instruction for the current slide (subject to the waiver policy below)
 2. This framework
-3. Reference material provided for the current task
+3. Content supplied for the current task (text, numbers, a reference slide image used as a content reference)
 4. General visual design principles
 
-A slide-specific instruction may override a rule for that slide only. Two things are never overridden by Claude's own judgment: the reserved zones (Section 3) and the prohibited elements (Section 5).
+### Waiver policy
+
+Rules fall into three groups.
+
+| Group | Rules | Can the user override it? |
+| --- | --- | --- |
+| **Layout contract** | Canvas, white background, left gutter, title placement, reserved zones (Section 3) | Only for one slide, and only when the user names the specific rule ("this slide may use a grey background"). A general request such as "make it more creative" is not a waiver. |
+| **Content prohibitions** | The elements in Section 5, except the two items below | Only for one slide, and only when the user asks for that exact element ("add a photo of the product"). |
+| **Never waived** | Generating a logo or brand mark; inventing data, sources, or conclusions | No. |
+
+A waived rule is dropped from the Quality Gate (Section 9) for that slide only, and nothing else about the slide changes. Every other rule still applies. A waiver never carries over to other slides or to later requests.
 
 ---
 
@@ -23,18 +35,21 @@ Slides should feel clean, modern, minimal, professional, structured, highly legi
 
 **Core principle: Less decoration, more visual clarity.**
 
-Every visual element must contribute to comprehension, hierarchy, or meaning. Do not fill whitespace to make a slide look fuller. A slide may only contain what the user supplied or asked for. Do not add elements to make it look more "finished".
+Every visual element must contribute to comprehension, hierarchy, or meaning. Do not fill whitespace to make a slide look fuller. A slide contains only what the user supplied or asked for. Do not add elements to make it look more "finished".
 
 ---
 
 ## 3. Locked Canvas and Geometry
 
-Positions are percentages of the canvas (x = from the left edge, y = from the top edge). Pixel values assume a 2560 × 1440 canvas and are for orientation only.
+Positions are percentages of the canvas: X from the left edge, Y from the top edge. Pixel values assume 2560 × 1440 and are for orientation only.
+
+The values below are **targets**. Section 9 gives the **accepted ranges** used when inspecting a result. Prompts always use the targets.
 
 ### Canvas
 
 - 16:9 widescreen. Do not crop, stretch, or distort.
-- Background: solid flat white `#FFFFFF`. Nothing behind the content: no image, texture, pattern, gradient, glow, or tint.
+- Default resolution 2560 × 1440 when supported, otherwise the highest 16:9 size available.
+- Background: solid flat white `#FFFFFF`. Nothing behind the content: no image, pattern, texture, gradient, glow, or tint.
 
 ### Left Blue Gutter
 
@@ -43,28 +58,37 @@ Positions are percentages of the canvas (x = from the left edge, y = from the to
 - Flat: no gradient, shadow, border, rounded edge, transparency, or pattern.
 - Same width on every slide in a deck.
 
-### Margins and Content Area
+### Content Margins
 
-- Content starts at x = 5% and ends at x = 97%. It must never touch or crowd the gutter.
-- Content area runs from y = 20% to y = 92% (except where a reserved zone applies).
+- Main content starts at X = 5% and ends at X = 97%. It never touches or crowds the gutter.
+- Content ends at Y = 92%, except where a reserved zone applies.
 
-### Title Band
+### Title Placement
 
-- The title sits in the top band: the top of the title block at about y = 4%, and a one-line title centered in the band y = 4% to 14%.
-- Title text must end at x = 78% or earlier. It never enters the top-right reserved zone.
-- Prefer a **short one-line title** (as a rule of thumb, up to about 40 characters). Refine the wording first. A **two-line title is acceptable** when one line would be unclear or too long; the second line still stays left of x = 78% and above the content area.
-- An optional subtitle goes directly below the title, in muted gray, one line.
+- The main title is the **first visible text element** on the slide.
+- The top of the title text sits at about **Y = 4%**.
+- The title starts at **X = 5%** and ends before **X = 78%**.
+- Prefer a **short one-line title** (rule of thumb: up to about 40 characters). Refine the wording first. A **two-line title** is allowed only when one line would be unclear or too long. Both lines stay left of X = 78%.
+- An optional subtitle goes directly below the title: one line, muted gray, also ending before X = 78%.
+- Nothing is placed above the title: no section label, eyebrow, header, tag, or decorative text. A section number or label from supplied content goes into the subtitle or is dropped.
+- The title is never moved downward to make room for secondary information. When space is short, the content region moves down or shrinks instead.
+- Title alignment, size, weight, and color are identical on every slide in a deck.
+
+### Content Region
+
+- Starts below the title block (title plus optional subtitle), with about 2% of clearance.
+- Normally starts near Y = 20%. A two-line title with a subtitle may push the start down to about Y = 25%. That is the only reason the start moves.
 
 ### Top-Right Reserved Zone
 
-- Rectangle: x = 80% to 100%, y = 0% to 16%.
-- Must be **plain empty white canvas**: no text, shape, line, box, outline, icon, label, mark, or placeholder.
+- Rectangle: X = 80% to 100%, Y = 0% to 16%.
+- Must be **completely empty white canvas**: no text, icon, logo, line, shape, border, outline, box, or placeholder.
 - Purpose: the user places a logo there after generation, aligned with the title. Do not draw anything that suggests the slot.
 
 ### Bottom-Right Reserved Zone
 
-- Rectangle: x = 80% to 100%, y = 88% to 100%.
-- Must be plain empty white canvas, same rule as above. Content in the right-hand column ends above y = 88%.
+- Rectangle: X = 80% to 100%, Y = 88% to 100%.
+- Completely empty white canvas, same rule as above. Right-hand content ends above Y = 88%.
 
 ---
 
@@ -95,7 +119,7 @@ Positions are percentages of the canvas (x = from the left edge, y = from the to
 - One clean modern sans-serif family for the whole slide (Inter or Segoe UI style).
 - Hierarchy: slide title, then section heading or primary message, then body, then supporting information.
 - Approximate sizes relative to canvas height: title 6%, section heading 3%, body 2.2–2.5%, supporting text not below 1.8%.
-- Title in bold deep navy. Secondary information in muted gray. A single accent-colored word in the title is allowed when it emphasizes the message.
+- Title in bold deep navy. Secondary information in muted gray. One accent-colored word in the title is allowed when it emphasizes the message.
 
 ### Components
 
@@ -104,11 +128,22 @@ Use cards, KPI blocks, charts, diagrams, tables, labels, dividers, and callouts 
 - Cards: light surface fill, optional 1 px `#D7E4E9` border, small corner radius, no heavy shadow.
 - Keep component styling consistent within the slide and across the deck.
 
-### Illustration and Icons
+### Illustration
 
-- Default: no illustration. Use one main illustration only when it clearly improves understanding.
-- Simple monoline icons (navy or one accent color) are allowed when separate concepts benefit from differentiation. Do not give every point an icon by default.
-- Any illustration is clean, professional, flat vector. Never photorealistic. Keep one consistent style across the deck.
+Use an illustration only when it improves comprehension. It must communicate the message, not fill whitespace.
+
+- **Allowed styles:** clean flat vector, professional editorial illustration, polished isometric illustration, restrained 2.5D vector illustration.
+- Restrained corporate palette, based on Section 4 colors. Quality and style are consistent across slides in a deck.
+- One major illustration per slide, unless several visuals are needed to understand the content.
+- Keep it inside the content region. It never enters a reserved zone or the title block.
+- **Separation from the canvas:** the illustration separates itself through its own contrast and outlines, or sits on a light tint panel (Section 4 surfaces). Do not separate it with blobs, glows, halos, gradient backdrops, or heavy shadows.
+- Soft flat shading and subtle tonal variation inside the illustration are fine. The gradient and glow ban in Section 5 applies to the canvas and to decoration, not to shading within an illustration.
+- When redesigning an existing slide, keep the illustration concept the user already chose.
+- Never photorealistic. No stock photography, realistic human renders, photographic textures, motion blur, or dramatic lighting.
+
+### Icons
+
+Simple monoline icons (navy or one accent color) are allowed when separate concepts benefit from differentiation. Do not give every point an icon by default.
 
 ### Data
 
@@ -118,15 +153,15 @@ When meaningful numbers are present, prefer a suitable representation: KPI hiera
 
 ## 5. Prohibited Elements
 
-These must not appear unless the user explicitly asks for that exact element on that slide.
+Unless a waiver under Section 1 applies, none of these may appear.
 
-- Photographs or photorealistic imagery of any subject: people, products, food, ingredients, objects, buildings, landscapes, stock imagery.
-- Background images, textures, patterns, gradients, glows, blur, vignettes, or lighting effects.
+- Photographs or photorealistic imagery of any subject: people, products, food, ingredients, objects, buildings, landscapes, stock imagery. Realistic human renders and photographic textures count as photorealistic.
+- Background images, textures, patterns, gradients, glows, blur, vignettes, or lighting effects on the canvas, plus motion blur and dramatic lighting anywhere.
 - Decorative shapes: waves, swooshes, curves, corner ornaments, ribbons, blobs, or abstract graphics.
-- Logos, brand marks, watermarks, or company names that were not part of the supplied slide text. Logos are never generated at all.
+- Logos and brand marks. They are never generated, even on request. A company name that appears in the supplied slide text may be rendered as plain text.
 - Headers, footers, running titles, section tags, taglines, page or slide numbers, dates, and confidentiality labels that were not supplied.
 - Placeholder boxes, "logo here" markers, empty frames, or outlines of any kind.
-- Heavy drop shadows, 3D effects, or excessive borders.
+- Heavy drop shadows and glossy or 3D-rendered effects. Restrained isometric and 2.5D illustration (Section 4) is not a 3D effect.
 - Invented facts, metrics, claims, sources, or causal relationships.
 
 A source or footnote line is allowed only when its text is supplied. It sits bottom-left, small and muted gray, outside the bottom-right reserved zone.
@@ -159,27 +194,58 @@ Keep identical across the deck: the Section 3 geometry, color system, typography
 
 ---
 
-## 9. Final Quality Check
+## 9. Quality Gate: HARD and SOFT Rules
 
-Inspect the generated image and verify:
+This section is the catalog. `SKILL.md` describes when and how to run it.
 
-**Locked rules**
-- The left gutter is visible, flat, full height, and about 1.5% wide.
-- The background is plain flat white, with no image, texture, gradient, glow, or decorative shape anywhere.
-- The top-right zone is completely empty: no text, logo, box, line, or placeholder.
-- The bottom-right zone is completely empty.
-- The title is in the top band, one short line (or two when needed), and ends before the top-right zone.
-- No logo, header, footer, slide number, tagline, or other element that was not supplied.
-- No photographic or photorealistic imagery.
+How each rule is checked: **[M]** can be measured by `scripts/validate_slide.py`, **[V]** needs visual inspection by the agent. A rule marked [M] still gets a visual look. A rule waived under Section 1 is skipped for that slide.
 
-**Quality**
-- The main message is immediately clear and the slide is easy to scan.
-- Hierarchy and alignment are intentional, and whitespace is deliberate.
-- Text matches the supplied wording exactly: no typos, missing words, or garbled characters.
-- Numbers match the source. Nothing was invented.
-- Colors are meaningful rather than decorative. Nothing is clipped, distorted, or crowded.
+### Accepted ranges (inspection only)
 
-If a locked rule fails, regenerate with a targeted correction before delivering.
+Generators never hit pixel-exact values, and compression blurs edges. Judge a result against these ranges. Do not put the ranges in prompts.
+
+| Item | Target | Accepted |
+| --- | --- | --- |
+| Aspect ratio | 16:9 | within 1% |
+| Gutter width | 1.5% of width | 1.2% to 1.8% |
+| Gutter color | `#1EA7F2` | each color channel within ±30 |
+| Gutter continuity | full height | at least 98% of rows |
+| Title top | Y = 4% | Y = 2% to 6% |
+| Title start | X = 5% | X = 4% to 6% |
+| Title end | before X = 78% | up to X = 79% |
+| Reserved zones | empty white | at least 99.5% of pixels near white (each channel 245 or higher) |
+
+### HARD rules (mandatory)
+
+| # | Rule | Check |
+| --- | --- | --- |
+| 1 | Canvas is 16:9 | [M] |
+| 2 | Background is solid white `#FFFFFF`, with no image, texture, gradient, or glow | [M] on unobstructed edge areas, [V] overall |
+| 3 | Left gutter is visible, full height, and 1.5% wide (accepted range above) | [M] |
+| 4 | Gutter color is `#1EA7F2` | [M] |
+| 5 | Top-right reserved zone is completely empty | [M] |
+| 6 | Bottom-right reserved zone is completely empty | [M] |
+| 7 | Main title is the first visible text, within the title placement targets, with nothing above it | [V], partly [M] (advisory) |
+| 8 | Title does not enter the top-right reserved zone and ends before X = 78% | [M] (title row clearance), [V] |
+| 9 | No logo or brand mark appears | [V] |
+| 10 | No prohibited element from Section 5 appears | [V] |
+| 11 | Every displayed number matches the source | [V] |
+| 12 | All text is accurate, free of spelling errors, and large enough to read (supporting text not below 1.8% of height) | [V] |
+| 13 | Nothing is clipped, overlapping, or distorted | [V] |
+
+### SOFT rules (judged after all hard rules pass; adjust to the content)
+
+- Visual balance
+- Illustration quality (also whether it improves understanding)
+- Readability optimization (comfortable sizes, contrast, line length)
+- Information density
+- Alignment
+- Whitespace
+- Composition
+- Visual hierarchy and whether the main message is immediately clear
+- Consistency with other slides in the deck
+
+A soft-rule issue never triggers regeneration by itself (see `SKILL.md`).
 
 ---
 
