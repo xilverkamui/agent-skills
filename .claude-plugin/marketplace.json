@@ -33,6 +33,31 @@
       ]
     },
     {
+      "name": "content-creator",
+      "description": "Animated storytelling and explainer videos from a voiceover and script, rendered by code (Python, Pillow, ffmpeg): a stickman story video with cinematic virtual camera, and a two-character flat 2D explainer video. Third-party skills by cuankreatifofficial (lynk.id), packaged here with attribution; see each skill's LICENSE-NOTICE.md.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./third-party/content-rid-animations",
+        "./third-party/content-stickman-cerita"
+      ],
+      "author": {
+        "name": "cuankreatifofficial (lynk.id)"
+      },
+      "category": "media",
+      "keywords": [
+        "video",
+        "animation",
+        "stickman",
+        "storytelling",
+        "explainer",
+        "voiceover",
+        "bahasa indonesia",
+        "mp4"
+      ]
+    },
+    {
       "name": "learn-toolkit",
       "description": "Learning tools for students: an adaptive math and science tutor for SMP grades 8-9 (national curriculum, mixed with Cambridge Lower Secondary) that guides with hints and step-by-step reasoning, in Bahasa Indonesia by default.",
       "version": "1.0.0",

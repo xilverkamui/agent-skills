@@ -1,0 +1,42 @@
+{
+  "judul": "Apa itu Inflasi",
+  "ukuran": [1920, 1080],
+  "fps": 30,
+  "vo": null,
+  "musik": "auto",
+  "adegan": [
+    {"tipe": "dialog", "latar": "kamar", "bicara": "pria",
+     "pria": {"ekspresi": "senang", "pose": "tunjuk_samping"}, "wanita": {"ekspresi": "senang"},
+     "narasi": "Halo teman-teman! Hari ini kita mau ngobrolin satu hal yang dekat banget sama dompet kita."},
+    {"tipe": "tanya", "tokoh": "pria", "teks": "Apa itu", "sorot": "Inflasi?",
+     "narasi": "Sebenarnya, apa sih inflasi itu?"},
+    {"tipe": "definisi", "tokoh": "wanita", "hias": "koin_naik",
+     "teks": "Inflasi adalah **kenaikan harga** barang dan jasa secara umum dan terus-menerus.",
+     "narasi": "Inflasi adalah kenaikan harga barang dan jasa secara umum dan terus-menerus."},
+    {"tipe": "contoh", "tokoh": "pria", "judul": "Contohnya...",
+     "item": [
+       {"ikon": "roti", "label": "Roti", "dari": "Rp10.000", "ke": "Rp12.000"},
+       {"ikon": "bbm", "label": "BBM", "dari": "Rp14.000", "ke": "Rp16.000"},
+       {"ikon": "susu", "label": "Susu", "dari": "Rp12.000", "ke": "Rp14.000"}],
+     "narasi": "Contohnya, harga roti naik dari sepuluh ribu jadi dua belas ribu. BBM dan susu juga ikut naik."},
+    {"tipe": "ikon_grid", "judul": "Penyebab Inflasi",
+     "item": [
+       {"ikon": "troli", "label": "Permintaan\nmeningkat"},
+       {"ikon": "kardus_turun", "label": "Pasokan\nberkurang"},
+       {"ikon": "uang_naik", "label": "Biaya\nproduksi naik"}],
+     "narasi": "Penyebabnya bisa karena permintaan meningkat, pasokan berkurang, atau biaya produksi naik."},
+    {"tipe": "daftar", "tokoh": "wanita", "judul": "Dampak Inflasi",
+     "item": [
+       {"ikon": "troli", "teks": "Daya beli masyarakat menurun"},
+       {"ikon": "celengan", "teks": "Tabungan nilainya berkurang"},
+       {"ikon": "grafik", "teks": "Biaya hidup semakin tinggi"}],
+     "narasi": "Dampaknya, daya beli menurun, tabungan nilainya berkurang, dan biaya hidup semakin tinggi."},
+    {"tipe": "checklist", "tokoh": "pria", "judul": "Cara Menghadapinya", "ikon": "dompet",
+     "item": ["Atur pengeluaran dengan bijak", "Cari sumber penghasilan tambahan", "Investasi untuk masa depan"],
+     "narasi": "Cara menghadapinya: atur pengeluaran dengan bijak, cari penghasilan tambahan, dan mulai investasi untuk masa depan."},
+    {"tipe": "sorak", "balon": "Dengan memahami inflasi, kita bisa lebih siap mengelola keuangan!",
+     "narasi": "Dengan memahami inflasi, kita bisa lebih siap mengelola keuangan!"},
+    {"tipe": "penutup", "teks": "Yuk, mulai kelola\nkeuanganmu sekarang!", "ikon": ["celengan", "koin", "tanaman"],
+     "narasi": "Yuk, mulai kelola keuanganmu sekarang!"}
+  ]
+}

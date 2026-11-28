@@ -31,10 +31,13 @@ the skill folder in `skills/`, so the skill itself stays portable.
 | Plugin | Skills |
 |---|---|
 | `admin-assistant` | [`meeting-scheduler`](skills/meeting-scheduler), [`minutes-of-meeting`](skills/minutes-of-meeting) |
+| `content-creator` | [`content-stickman-cerita`](third-party/content-stickman-cerita), [`content-rid-animations`](third-party/content-rid-animations) (third-party) |
 | `learn-toolkit` | [`learn-tutor`](skills/learn-tutor) |
 | `lnk-toolkit` | [`lnk-team-weekly`](skills/lnk-team-weekly), [`lnk-visual-presentation`](skills/lnk-visual-presentation) |
 | `push-skill-to-github` | [`push-skill-to-github`](skills/push-skill-to-github) |
 | `simple-suggestion` | [`simple-suggestion`](skills/simple-suggestion) |
+
+**Third-party note:** the two skills in `content-creator` are free downloads by *cuankreatifofficial* ([lynk.id](https://lynk.id/cuankreatifofficial/2l4jppqvpqgz)). The author published no license, so they are not under this repository's MIT license; see `LICENSE-NOTICE.md` in each folder.
 
 **Migrating:** the single-skill plugins `meeting-scheduler` and `minutes-of-meeting` were replaced by
 `admin-assistant`. Uninstall them before installing `admin-assistant`, so the same skill is not installed twice:

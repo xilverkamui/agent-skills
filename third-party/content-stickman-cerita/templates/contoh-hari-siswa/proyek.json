@@ -1,0 +1,513 @@
+{
+  "judul": "Sehari Bersama Raka",
+  "ukuran": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "vo": null,
+  "musik": "auto",
+  "mood_musik": "ceria",
+  "subtitle": true,
+  "tokoh": {
+    "raka": "raka",
+    "bimo": "bimo",
+    "dimas": "dimas",
+    "nadia": "nadia"
+  },
+  "adegan": [
+    {
+      "latar": "kamar",
+      "waktu": "pagi",
+      "jam": "07:00",
+      "alarm": true,
+      "musik": "santai",
+      "narasi": "Jam tujuh pagi. Weker berbunyi nyaring, tapi Raka masih nyenyak di bawah selimut.",
+      "tokoh": [
+        {
+          "id": "raka",
+          "x": -158,
+          "y": -167,
+          "pose": "tidur",
+          "ekspresi": "tidur",
+          "aksi": [
+            {
+              "kata": "nyenyak",
+              "efek": "zzz",
+              "efek_dur": 3
+            }
+          ]
+        }
+      ],
+      "kamera": {
+        "awal": {
+          "x": 185,
+          "y": -214,
+          "z": 3.4
+        },
+        "gerak": [
+          {
+            "t": 0.3,
+            "jenis": "goyang",
+            "kuat": 7,
+            "dur": 1.0
+          },
+          {
+            "kata": "tapi Raka",
+            "jenis": "terbang",
+            "ke": {
+              "x": -150,
+              "y": -260,
+              "z": 1.5
+            },
+            "dur": 1.5
+          },
+          {
+            "kata": "nyenyak",
+            "jenis": "pull",
+            "ke": {
+              "ukuran": "lebar",
+              "x": -120,
+              "y": -300
+            },
+            "dur": 2.2
+          }
+        ]
+      }
+    },
+    {
+      "latar": "kamar",
+      "waktu": "pagi",
+      "jam": "07:00",
+      "musik": "semangat",
+      "narasi": "Tiba-tiba dia teringat: hari ini adalah hari pertamanya masuk SMP!",
+      "transisi": {
+        "jenis": "flash",
+        "dur": 0.3
+      },
+      "tokoh": [
+        {
+          "id": "raka",
+          "x": -250,
+          "y": -30,
+          "pose": "kaget",
+          "ekspresi": "kaget",
+          "aksi": [
+            {
+              "t": 0.1,
+              "efek": "tanda_seru",
+              "efek_dur": 1.3
+            },
+            {
+              "kata": "hari pertamanya",
+              "pose": "peregangan",
+              "ekspresi": "semangat"
+            }
+          ]
+        }
+      ],
+      "kamera": {
+        "awal": {
+          "ukuran": "sedang",
+          "fokus": "raka"
+        },
+        "gerak": [
+          {
+            "kata": "hari ini",
+            "jenis": "punch",
+            "kuat": 0.14
+          },
+          {
+            "kata": "hari pertamanya",
+            "jenis": "pull",
+            "ke": {
+              "ukuran": "lebar",
+              "fokus": "raka"
+            },
+            "dur": 1.2
+          },
+          {
+            "kata": "SMP",
+            "jenis": "zoom_cepat",
+            "ke": {
+              "ukuran": "dekat",
+              "fokus": "raka"
+            }
+          }
+        ]
+      },
+      "efek": [
+        {
+          "kata": "SMP",
+          "jenis": "garis_kecepatan",
+          "dur": 0.7
+        }
+      ],
+      "teks": [
+        {
+          "kata": "SMP",
+          "gaya": "seru",
+          "isi": "SMP!",
+          "posisi": [
+            0.78,
+            0.3
+          ],
+          "sampai": 2.0
+        }
+      ]
+    },
+    {
+      "latar": "sekolah_luar",
+      "waktu": "pagi",
+      "musik": "ceria",
+      "narasi": "Dengan penuh semangat, ia berjalan menuju sekolah barunya.",
+      "transisi": {
+        "jenis": "whip",
+        "arah": "kiri",
+        "dur": 0.5
+      },
+      "tokoh": [
+        {
+          "id": "raka",
+          "x": -1100,
+          "pose": "jalan",
+          "ekspresi": "semangat",
+          "ransel": true,
+          "aksi": [
+            {
+              "t": 0.1,
+              "ke_x": -40,
+              "durasi": 4.2,
+              "gaya": "jalan"
+            },
+            {
+              "t": 4.4,
+              "pose": "jempol",
+              "ekspresi": "senang",
+              "hadap": "depan"
+            }
+          ]
+        }
+      ],
+      "kamera": {
+        "awal": {
+          "ukuran": "lebar",
+          "fokus": "raka"
+        },
+        "gerak": [
+          {
+            "t": 0,
+            "jenis": "ikut",
+            "fokus": "raka",
+            "sampai": 4.4
+          },
+          {
+            "kata": "sekolah barunya",
+            "jenis": "crane",
+            "ke": {
+              "y": -470,
+              "z": 0.8
+            },
+            "dur": 2.0
+          }
+        ]
+      }
+    },
+    {
+      "latar": "taman",
+      "waktu": "siang",
+      "musik": "lucu",
+      "narasi": "Di halaman, dua teman barunya sudah menunggu. Bimo dan Dimas langsung melambai dan mengajaknya ngobrol.",
+      "transisi": {
+        "jenis": "iris",
+        "x": 0.4,
+        "y": 0.6,
+        "dur": 0.6
+      },
+      "tokoh": [
+        {
+          "id": "raka",
+          "x": -130,
+          "pose": "lambai",
+          "ekspresi": "senang",
+          "hadap": "kanan",
+          "ransel": true
+        },
+        {
+          "id": "bimo",
+          "x": 260,
+          "pose": "lambai",
+          "ekspresi": "tertawa",
+          "hadap": "kiri",
+          "ransel": true,
+          "masuk": {
+            "dari": "kanan",
+            "t": 0.2,
+            "dur": 1.1,
+            "jarak": 500
+          },
+          "bicara": [
+            [
+              {
+                "kata": "melambai"
+              },
+              {
+                "kata": "ngobrol"
+              }
+            ]
+          ]
+        },
+        {
+          "id": "dimas",
+          "x": 620,
+          "pose": "tunjuk_kiri",
+          "ekspresi": "senang",
+          "hadap": "kiri",
+          "ransel": true,
+          "masuk": {
+            "dari": "kanan",
+            "t": 0.5,
+            "dur": 1.1,
+            "jarak": 500
+          }
+        }
+      ],
+      "balon": [
+        {
+          "oleh": "bimo",
+          "teks": "Hai, Raka! Ayo gabung!",
+          "kata": "melambai",
+          "sampai": 5.0
+        },
+        {
+          "oleh": "raka",
+          "teks": "Halo semua!",
+          "kata": "ngobrol",
+          "sampai": 8.0,
+          "sisi": "kiri"
+        }
+      ],
+      "kamera": {
+        "awal": {
+          "ukuran": "lebar",
+          "fokus": [
+            "raka",
+            "bimo",
+            "dimas"
+          ]
+        },
+        "gerak": [
+          {
+            "kata": "Bimo dan Dimas",
+            "jenis": "push",
+            "ke": {
+              "ukuran": "sedang",
+              "fokus": [
+                "raka",
+                "bimo"
+              ]
+            },
+            "dur": 1.6
+          },
+          {
+            "kata": "ngobrol",
+            "jenis": "pan",
+            "ke": {
+              "fokus": [
+                "bimo",
+                "dimas"
+              ]
+            },
+            "dur": 1.2
+          }
+        ]
+      }
+    },
+    {
+      "latar": "ruang_belajar",
+      "waktu": "malam",
+      "musik": "hangat",
+      "narasi": "Malamnya, Raka mengerjakan tugas pertamanya dengan tekun. Sampai tiba-tiba, dia dapat ide!",
+      "transisi": {
+        "jenis": "fade",
+        "dur": 0.7
+      },
+      "tokoh": [
+        {
+          "id": "raka",
+          "x": 230,
+          "pose": "duduk_nulis",
+          "ekspresi": "tenang",
+          "bawa": "pensil",
+          "aksi": [
+            {
+              "kata": "tiba-tiba",
+              "pose": "duduk",
+              "ekspresi": "kaget"
+            },
+            {
+              "kata": "ide",
+              "ekspresi": "semangat",
+              "pose": "duduk_sorak",
+              "efek": "bohlam",
+              "efek_dur": 2.4
+            }
+          ]
+        }
+      ],
+      "kamera": {
+        "awal": {
+          "ukuran": "lebar",
+          "fokus": "raka",
+          "x": 130
+        },
+        "gerak": [
+          {
+            "t": 1.0,
+            "jenis": "push",
+            "ke": {
+              "ukuran": "sedang",
+              "fokus": "raka"
+            },
+            "dur": 4.0
+          },
+          {
+            "kata": "tiba-tiba",
+            "jenis": "punch",
+            "kuat": 0.12
+          },
+          {
+            "kata": "ide",
+            "jenis": "goyang",
+            "kuat": 5,
+            "dur": 0.4
+          }
+        ]
+      },
+      "efek": [
+        {
+          "t": 0,
+          "jenis": "vinyet",
+          "sampai": 99,
+          "kuat": 0.5
+        }
+      ]
+    },
+    {
+      "latar": "ruang_tamu",
+      "waktu": "malam",
+      "musik": "lucu",
+      "narasi": "Setelah itu, ia bersantai main game sambil ditemani si kucing.",
+      "transisi": {
+        "jenis": "whip",
+        "arah": "kanan",
+        "dur": 0.5
+      },
+      "tokoh": [
+        {
+          "id": "raka",
+          "x": -200,
+          "pose": "duduk_game",
+          "ekspresi": "tertawa",
+          "bawa": "stik",
+          "aksi": [
+            {
+              "kata": "kucing",
+              "ekspresi": "senang",
+              "lihat": [
+                0.9,
+                0.2
+              ],
+              "efek": "hati",
+              "efek_dur": 2
+            }
+          ]
+        }
+      ],
+      "kamera": {
+        "awal": {
+          "ukuran": "lebar",
+          "fokus": "raka"
+        },
+        "gerak": [
+          {
+            "t": 0.5,
+            "jenis": "ayun",
+            "kuat": 60,
+            "periode": 5,
+            "sampai": 6
+          },
+          {
+            "kata": "kucing",
+            "jenis": "pan",
+            "ke": {
+              "dx": 300
+            },
+            "dur": 1.2
+          }
+        ]
+      }
+    },
+    {
+      "latar": "kamar",
+      "waktu": "malam",
+      "jam": "21:30",
+      "selimut": true,
+      "musik": "malam",
+      "narasi": "Sebelum tidur, Raka tersenyum. Hari yang melelahkan, tapi menyenangkan.",
+      "transisi": {
+        "jenis": "fade",
+        "dur": 0.8
+      },
+      "tokoh": [
+        {
+          "id": "raka",
+          "x": -158,
+          "y": -167,
+          "pose": "tidur",
+          "ekspresi": "tidur",
+          "aksi": [
+            {
+              "kata": "tapi menyenangkan",
+              "efek": "zzz",
+              "efek_dur": 4
+            }
+          ]
+        }
+      ],
+      "kamera": {
+        "awal": {
+          "ukuran": "dekat",
+          "x": -480,
+          "y": -240
+        },
+        "gerak": [
+          {
+            "t": 1.5,
+            "jenis": "pull",
+            "ke": {
+              "ukuran": "lebar",
+              "x": 100,
+              "y": -320
+            },
+            "dur": 4.5
+          },
+          {
+            "t": 0.5,
+            "jenis": "miring",
+            "r": 2.5,
+            "dur": 1.5
+          }
+        ]
+      },
+      "efek": [
+        {
+          "t": 0,
+          "jenis": "vinyet",
+          "sampai": 99,
+          "kuat": 0.6
+        }
+      ]
+    }
+  ]
+}
