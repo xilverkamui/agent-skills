@@ -33,7 +33,7 @@
       ]
     },
     {
-      "name": "learn-toolkits",
+      "name": "learn-toolkit",
       "description": "Learning tools for students: an adaptive math and science tutor for SMP grades 8-9 (national curriculum, mixed with Cambridge Lower Secondary) that guides with hints and step-by-step reasoning, in Bahasa Indonesia by default.",
       "version": "1.0.0",
       "source": "./",
