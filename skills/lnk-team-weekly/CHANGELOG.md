@@ -2,6 +2,18 @@
 
 Versioning follows the repository rules in [VERSIONING.md](https://github.com/xilverkamui/agent-skills/blob/main/VERSIONING.md).
 
+## [2.0.0] - 2026-11-28
+
+### Changed
+- The email body is now delivered in a single code block, with optional divider lines under the section headings, so it is easy to copy into Outlook.
+- Wins that are achievements by people get one short, sincere appreciation paragraph that also acknowledges lower placings; thank-you is said once in the whole email.
+- 1-on-1 Corner is connected to the week's content where natural.
+
+### Fixed
+- The skill no longer adds offers, promises, or "as usual" wording the user did not give.
+- A collective label over a group of items must be true for every item.
+- Month-end or payday context stays in the opening and is not repeated in the Weekly Thought.
+
 ## [1.0.0] - 2026-11-26
 
 ### Added

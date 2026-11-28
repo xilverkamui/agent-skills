@@ -4,13 +4,13 @@ description: Write the weekly Friday email ("Team Weekly") from an IT manager to
 license: MIT
 metadata:
   author: Eriyanto Wibowo
-  version: "1.0.0"
-  last_updated: "2026-11-26"
+  version: "2.0.0"
+  last_updated: "2026-11-28"
 ---
 
 # Team Weekly
 
-Skill version: 1.0.0 (see CHANGELOG.md for history)
+Skill version: 2.0.0 (see CHANGELOG.md for history)
 
 Write the weekly internal email that an IT manager sends to their team every Friday afternoon. The user is that manager; write in their voice, first person ("saya"), to their own team.
 
@@ -54,6 +54,10 @@ Keep questions few and focused (ideally 1–3, in one message). Do not ask about
 
 For the opening and Weekly Thought, only reference things that are in the input or genuinely common knowledge (e.g. a national holiday, end of month). Do not invent "busy week", "lots of discussions", or similar claims unless the input supports them.
 
+Also do not add offers, promises, or claims the user did not give: for example offering the team help with someone's preparation, or wording like "as usual" for a recurring item when recurrence is not confirmed. A collective label over a group of items (for example "from event X, four pieces of news") must be true for every item in the group; if one item belongs to a different event, word the label neutrally.
+
+Seasonal or calendar context the user provides (month-end, payday, a holiday) belongs in the opening. Do not repeat it in the Weekly Thought or elsewhere.
+
 ## Language
 
 Default: natural Bahasa Indonesia, the way an Indonesian manager actually writes to their team. Use another language only if the user explicitly asks.
@@ -95,7 +99,7 @@ Sections in this order. Include only what has real content. Sections should diff
 
 1. **Opening** (always) — 2–4 short sentences, no heading. Pick an approach that fits this specific week: an observation, a milestone, something timely, a light reflection, a look ahead, or appreciation. If last week's edition was pasted, use a different approach than it did. Don't thank the team every week by default.
 
-2. **Wins This Week 🏆** (only if wins are given) — Celebrate naturally. Say briefly why each win matters to the business or users. Recognize effort as well as outcome. No status-report language, no exaggeration.
+2. **Wins This Week 🏆** (only if wins are given) — Celebrate naturally. Say briefly why each win matters to the business or users. Recognize effort as well as outcome. No status-report language, no exaggeration. When the wins are achievements by people (competitions, awards, recognition), add one short, sincere paragraph about what that kind of effort generally involves, only in terms that are common knowledge and never inventing specifics, and acknowledge every placing, including lower ones, in one general sentence. Say thank-you once in the whole email; do not repeat it across Wins, shoutouts, and closing.
 
 3. **Updates 📢** (only if updates are given) — Plain explanation of what people need to know. Conversational: "Minggu depan kita akan lebih banyak fokus ke..." rather than "Perhatian utama kita akan bergeser...".
 
@@ -107,7 +111,7 @@ Sections in this order. Include only what has real content. Sections should diff
 
 7. **Micro Engagement** (only if flagged) — One casual, optional invitation to share something (an AI tool, a coffee place, a podcast, weekend plans). Nobody should feel they must reply.
 
-8. **1-on-1 Corner 🤝** (only if flagged) — A warm, low-pressure reminder that the manager's calendar is open for ideas, brainstorming, growth, feedback, check-ins, or just catching up. Vary the wording.
+8. **1-on-1 Corner 🤝** (only if flagged) — A warm, low-pressure reminder that the manager's calendar is open for ideas, brainstorming, growth, feedback, check-ins, or just catching up. Vary the wording. Where natural, connect it to something in this week's content.
 
 9. **Closing** (always) — One or two short sentences: a relaxing weekend, looking ahead, appreciation, or a simple goodbye. No name or signature; the user's Outlook signature is added automatically.
 
@@ -134,7 +138,7 @@ If after 3 rounds the draft still scores below 9.5, the cause is usually missing
 Deliver, in this order:
 
 1. The subject line.
-2. The email body, ready to paste into Outlook (headings as plain text with emoji, short bullets where helpful, no Markdown tables).
+2. The email body in a single code block so it is easy to copy, ready to paste into Outlook (headings as plain text with emoji, optional divider lines under headings, short bullets where helpful, no Markdown tables, no bold markup since it will not survive the paste).
 3. One short line after the email: the final self-critique score, plus at most one sentence on anything worth the user's attention (e.g. "1-on-1 Corner tidak saya sertakan karena tidak diminta minggu ini."). Write this line in Indonesian.
 
 Do not show the internal rubric scoring or revision history unless the user asks.
