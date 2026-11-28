@@ -33,6 +33,31 @@
       ]
     },
     {
+      "name": "learn-toolkits",
+      "description": "Learning tools for students: an adaptive math and science tutor for SMP grades 8-9 (national curriculum, mixed with Cambridge Lower Secondary) that guides with hints and step-by-step reasoning, in Bahasa Indonesia by default.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/learn-tutor"
+      ],
+      "author": {
+        "name": "Eriyanto Wibowo"
+      },
+      "license": "MIT",
+      "category": "education",
+      "keywords": [
+        "tutor",
+        "math",
+        "science",
+        "smp",
+        "cambridge",
+        "kurikulum merdeka",
+        "student",
+        "learning"
+      ]
+    },
+    {
       "name": "lnk-toolkit",
       "description": "Everyday productivity skills: write the weekly Friday team email in natural Bahasa Indonesia with an internal self-critique, and generate presentation slides as polished 16:9 images from a fixed visual framework.",
       "version": "1.2.0",
