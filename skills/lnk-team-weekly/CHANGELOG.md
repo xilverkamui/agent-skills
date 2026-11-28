@@ -2,6 +2,11 @@
 
 Versioning follows the repository rules in [VERSIONING.md](https://github.com/xilverkamui/agent-skills/blob/main/VERSIONING.md).
 
+## [3.0.0] - 2026-11-28
+
+### Changed
+- The optional "Micro Engagement" section is now called "Mini Corner" (with 💬), matching the name in the writer's own style notes. The prompt flag is now "include Mini Corner"; older prompts that still say "Micro Engagement" are treated as the same section.
+
 ## [2.0.0] - 2026-11-28
 
 ### Changed

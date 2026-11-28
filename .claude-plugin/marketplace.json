@@ -85,7 +85,7 @@
     {
       "name": "lnk-toolkit",
       "description": "Everyday productivity skills: write the weekly Friday team email in natural Bahasa Indonesia with an internal self-critique, and generate presentation slides as polished 16:9 images from a fixed visual framework.",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "source": "./",
       "strict": false,
       "skills": [

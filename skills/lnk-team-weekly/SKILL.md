@@ -4,13 +4,13 @@ description: Write the weekly Friday email ("Team Weekly") from an IT manager to
 license: MIT
 metadata:
   author: Eriyanto Wibowo
-  version: "2.0.0"
+  version: "3.0.0"
   last_updated: "2026-11-28"
 ---
 
 # Team Weekly
 
-Skill version: 2.0.0 (see CHANGELOG.md for history)
+Skill version: 3.0.0 (see CHANGELOG.md for history)
 
 Write the weekly internal email that an IT manager sends to their team every Friday afternoon. The user is that manager; write in their voice, first person ("saya"), to their own team.
 
@@ -30,10 +30,10 @@ The user provides one or more of:
 - Updates
 - Shoutouts (person + what they did)
 - Next week focus
-- Optional flags: include 1-on-1 Corner (yes/no), include Micro Engagement (yes/no)
+- Optional flags: include 1-on-1 Corner (yes/no), include Mini Corner (yes/no; older prompts may say "Micro Engagement", which is the same section)
 - Optional: last week's edition (pasted), to avoid repeating its patterns
 
-You cannot see previous editions unless the user pastes one. Do not pretend to remember them. Section rotation (1-on-1 Corner, Micro Engagement) is decided by the user's flags. If no flag is given, omit those two sections.
+You cannot see previous editions unless the user pastes one. Do not pretend to remember them. Section rotation (1-on-1 Corner, Mini Corner) is decided by the user's flags. If no flag is given, omit those two sections.
 
 ## Reference files and private context
 
@@ -109,7 +109,7 @@ Sections in this order. Include only what has real content. Sections should diff
 
 6. **Weekly Thought ✨** (always) — One or two sentences. A small, ordinary observation someone might say over Friday coffee. Not a lesson, not advice, not a quote. Ideally connected to something in this week's content.
 
-7. **Micro Engagement** (only if flagged) — One casual, optional invitation to share something (an AI tool, a coffee place, a podcast, weekend plans). Nobody should feel they must reply.
+7. **Mini Corner 💬** (only if flagged) — One casual, optional invitation to share something (an AI tool, a coffee place, a podcast, weekend plans). Nobody should feel they must reply.
 
 8. **1-on-1 Corner 🤝** (only if flagged) — A warm, low-pressure reminder that the manager's calendar is open for ideas, brainstorming, growth, feedback, check-ins, or just catching up. Vary the wording. Where natural, connect it to something in this week's content.
 
